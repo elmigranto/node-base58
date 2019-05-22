@@ -7,14 +7,10 @@ const alphabetLookup = [...alphabet].reduce((lookup, char, index) => {
   return lookup;
 }, {});
 
+const safeInt = (thing) => thing >= 0 && Number.isSafeInteger(thing) 
+
 function assertNonNegativeSafeInteger(val) {
-  if (
-    typeof val !== "number" ||
-    isNaN(val) ||
-    val < 0 ||
-    val > Number.MAX_SAFE_INTEGER ||
-    Math.floor(val) !== val
-  ) {
+  if (!safeInt(val)) {
     throw new Error("Value passed is not a non-negative safe integer.");
   }
 }
